@@ -3,3 +3,4 @@ venv/Scripts/activate
 pip install python-dotenv
 pip install flask
 pip install flask_sqlalchemy
+pip install gpxpy
