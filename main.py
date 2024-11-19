@@ -4,6 +4,8 @@ from extensions import db
 import models
 from blueprints.upload import upload_bp
 from blueprints.tracks import tracks_bp
+from blueprints.stats import stats_bp
+from blueprints.path import path_bp
 from flask_cors import CORS
 
 def create_app():
@@ -22,6 +24,8 @@ def create_app():
 
   app.register_blueprint(upload_bp, url_prefix='/upload')
   app.register_blueprint(tracks_bp, url_prefix='/get_tracks')
+  app.register_blueprint(stats_bp, url_prefix='/get_stats')
+  app.register_blueprint(path_bp, url_prefix='/get_path')
   
 
   return app
