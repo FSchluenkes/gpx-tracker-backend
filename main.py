@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask
 import os
 from extensions import db
 import models
@@ -6,6 +6,7 @@ from blueprints.upload import upload_bp
 from blueprints.tracks import tracks_bp
 from blueprints.stats import stats_bp
 from blueprints.path import path_bp
+from blueprints.graph import graph_bp
 from flask_cors import CORS
 
 def create_app():
@@ -26,6 +27,7 @@ def create_app():
   app.register_blueprint(tracks_bp, url_prefix='/get_tracks')
   app.register_blueprint(stats_bp, url_prefix='/get_stats')
   app.register_blueprint(path_bp, url_prefix='/get_path')
+  app.register_blueprint(graph_bp, url_prefix='/get_graph')
   
 
   return app

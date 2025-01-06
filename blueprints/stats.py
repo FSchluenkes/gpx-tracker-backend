@@ -48,7 +48,10 @@ def getMaxSpeed(trackpoints: list[TrackPoint]) -> float:
   for i in range(1, len(trackpoints)):
     km = haversine(trackpoints[i-1].lat, trackpoints[i-1].lon, trackpoints[i].lat, trackpoints[i].lon)
     duration = trackpoints[i].timestamp - trackpoints[i-1].timestamp   
-    kmh = km / (duration.seconds / 3600)
+    if duration.seconds == 0:
+      kmh = 0
+    else:
+      kmh = (km * 3600 ) / duration.seconds
 
     max_kmh = max(max_kmh, kmh)
 
@@ -66,7 +69,7 @@ def get_stats():
     distance = getTrackLength(trackpoints)
     gain, loss = getAltitude(trackpoints)
     duration = trackpoints[-1].timestamp - trackpoints[0].timestamp
-    avg = distance / (duration.seconds / 3600)
+    avg = (distance * 3600) / duration.seconds
     max_kmh = getMaxSpeed(trackpoints)
   
 
